@@ -7,6 +7,7 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     
+    var weatherManager = WeatherManager()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,7 +16,6 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func searchPressed(_ sender: UIButton) {
         // What to do when search button is pressed
-        
         searchTextField.endEditing(true) // Force close keyboard
     }
     
@@ -41,6 +41,12 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         // When the user stops editing in the text field, before we reset the text field we use the user input to get the weather
         
+        
+        // We can also do some dummy proofing on when the user enters random text that is not a city name here ....
+        
+        if let city = searchTextField.text { // Optionally unwrap
+            weatherManager.fetchWeather(cityName: city) // Call function from WeatherManager object
+        }
         
         
         
