@@ -1,6 +1,6 @@
 import UIKit
 
-class WeatherViewController: UIViewController, UITextFieldDelegate {
+class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate { //🟥
 
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -11,6 +11,9 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        weatherManager.delegate = self //🟥
+        // Set the weatherManager as the delagate
         searchTextField.delegate = self // Set the text field as the delagate
     }
     
@@ -47,11 +50,21 @@ class WeatherViewController: UIViewController, UITextFieldDelegate {
         if let city = searchTextField.text { // Optionally unwrap
             weatherManager.fetchWeather(cityName: city) // Call function from WeatherManager object
         }
-        
-        
-        
-        
         searchTextField.text = "" // Clears the text field when we press go
+    }
+    
+    func didUpdateWeather(weatherObject: WeatherModel) { //🟥
+        DispatchQueue.main.async { // We have to use DispatchQueue here
+            
+            // Set the image and temperature from the data
+            self.temperatureLabel.text = weatherObject.temperatureString
+            self.conditionImageView.image = UIImage(systemName: weatherObject.conditonName)
+            self.cityLabel.text = weatherObject.cityName
+        }
+    }
+    
+    func didFailWithError(error: Error) {
+        print(error)
     }
     
 
