@@ -1,5 +1,6 @@
 import Foundation
 
+//MARK: - WeatherManagerDelegate Protocol
 protocol WeatherManagerDelegate { // 🟥
     // Delegate protocol
     func didUpdateWeather(weatherObject: WeatherModel)
@@ -29,6 +30,7 @@ struct WeatherManager {
         performRequest(urlString: urlString)
     }
     
+    //MARK: - Networking Code
     func performRequest(urlString: String) {
         // The function that handles networking
         
@@ -48,7 +50,7 @@ struct WeatherManager {
         }
         
     }
-    
+    //MARK: - handle Function
     func handle(data: Data?, response: URLResponse?, error: Error?)  {
         // Handel function that either prints error or parses JSON
         if error != nil { // If we have an error
@@ -65,7 +67,7 @@ struct WeatherManager {
         }
     }
     
-    
+    //MARK: - parseJSON
     func parseJSON(weatherData: Data) -> WeatherModel? {
         // Function to parse the JSON data
         let decoder = JSONDecoder()

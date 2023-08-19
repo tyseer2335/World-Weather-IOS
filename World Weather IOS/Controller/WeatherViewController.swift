@@ -1,7 +1,8 @@
 import UIKit
 
-class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManagerDelegate { //🟥
-
+//MARK: - WeatherViewController Class
+class WeatherViewController: UIViewController { //🟥
+    
     @IBOutlet weak var conditionImageView: UIImageView!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
@@ -16,19 +17,24 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         // Set the weatherManager as the delagate
         searchTextField.delegate = self // Set the text field as the delagate
     }
-    
+}
+
+//MARK: - UITextFieldDelegate
+extension WeatherViewController: UITextFieldDelegate {
+    // All the logic related to the UITextField is in this extention
     @IBAction func searchPressed(_ sender: UIButton) {
         // What to do when search button is pressed
         searchTextField.endEditing(true) // Force close keyboard
     }
     
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // What to do when te return button is pressed, return true or false to process return
-        
         searchTextField.endEditing(true) // Force close keyboard
         print(searchTextField.text!)
         return true
     }
+    
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         // When the user tried to deselect the text field, we can use this to make sure that the user did not enter an empty string
@@ -52,7 +58,11 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         }
         searchTextField.text = "" // Clears the text field when we press go
     }
-    
+}
+
+//MARK: - WeatherManagerDelegate
+extension WeatherViewController: WeatherManagerDelegate {
+    // All the logic related to the WeatherManager is in this extention
     func didUpdateWeather(weatherObject: WeatherModel) { //🟥
         DispatchQueue.main.async { // We have to use DispatchQueue here
             
@@ -66,7 +76,4 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
     func didFailWithError(error: Error) {
         print(error)
     }
-    
-
 }
-
