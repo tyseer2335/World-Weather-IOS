@@ -1,4 +1,5 @@
 import Foundation
+import CoreLocation
 
 //MARK: - WeatherManagerDelegate Protocol
 protocol WeatherManagerDelegate { // 🟥
@@ -29,6 +30,14 @@ struct WeatherManager {
         let urlString = "\(weatherUrl)\(apiKey)&units=metric&q=\(cityName)"
         performRequest(urlString: urlString)
     }
+    
+    func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        // Function to get weather data from given longatide and latitide
+        // Notice that we can have functions with the same name in swift, with different paramaters
+        let urlString = "\(weatherUrl)\(apiKey)&units=metric&lat=\(latitude)&lon=\(longitude)"
+        performRequest(urlString: urlString)
+    }
+    
     
     //MARK: - Networking Code
     func performRequest(urlString: String) {
@@ -80,10 +89,6 @@ struct WeatherManager {
             
             // Put the data into a weather object
             let weatherObject = WeatherModel(conditionId: id, cityName: name, temperature: temp)
-            
-            // Call the conditonName throug the weather object
-            print(weatherObject.conditonName)
-            print(weatherObject.temperatureString)
             
             // Return the WeatherModel Object
             return weatherObject
