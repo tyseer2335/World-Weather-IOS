@@ -7,10 +7,30 @@ struct WeatherModel {
     let conditionId: Int
     let cityName: String
     let temperature: Double
+    let high: Double
+    let low: Double
+    let feelsLike: Double
+    let pressure: Int
+    let humdity: Int
+    let description: String
+    let speed: Double
+    
     
     //MARK: - Computed properties
     var temperatureString: String {
         return String(format: "%.1f", temperature)
+    }
+    
+    var highTemperatureString: String {
+        return String(format: "%.1f", high)
+    }
+    
+    var lowTemperatureString: String {
+        return String(format: "%.1f", low)
+    }
+    
+    var feelsLikeTemperatureString: String {
+        return String(format: "%.1f", feelsLike)
     }
     
     var conditonName: String  {
@@ -58,5 +78,7 @@ struct WeatherModel {
     }
 
 }
+
+
 
 

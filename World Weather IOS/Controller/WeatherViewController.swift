@@ -9,7 +9,11 @@ class WeatherViewController: UIViewController { //🟥
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var backgoundImage: UIImageView!
-    
+    @IBOutlet weak var feelsLikeTemp: UILabel!
+    @IBOutlet weak var windSpeed: UILabel!
+    @IBOutlet weak var pressureLabel: UILabel!
+    @IBOutlet weak var humidLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
@@ -66,8 +70,6 @@ extension WeatherViewController: UITextFieldDelegate {
         // When the user stops editing in the text field, before we reset the text field we use the user input to get the weather
         
         
-        // We can also do some dummy proofing on when the user enters random text that is not a city name here ....
-        
         if let city = searchTextField.text { // Optionally unwrap
             weatherManager.fetchWeather(cityName: city) // Call function from WeatherManager object
         }
@@ -80,18 +82,25 @@ extension WeatherViewController: WeatherManagerDelegate {
     // All the logic related to the WeatherManager is in this extention
     func didUpdateWeather(weatherObject: WeatherModel) { //🟥
         DispatchQueue.main.async { // We have to use DispatchQueue here
-            
-            // Set the image and temperature from the data
-            self.temperatureLabel.text = weatherObject.temperatureString
-            self.conditionImageView.image = UIImage(systemName: weatherObject.conditonName)
-            self.cityLabel.text = weatherObject.cityName
-            self.backgoundImage.image = weatherObject.imageName
+            self.setEverything(weatherObject: weatherObject)
         }
     }
     
     func didFailWithError(error: Error) {
-        
-        print("error")
+        print(error)
+    }
+    
+    func setEverything(weatherObject: WeatherModel) {
+        // Set everything from weather data
+        self.temperatureLabel.text = weatherObject.temperatureString
+        self.conditionImageView.image = UIImage(systemName: weatherObject.conditonName)
+        self.cityLabel.text = weatherObject.cityName
+        self.backgoundImage.image = weatherObject.imageName
+        self.feelsLikeTemp.text = "\(weatherObject.highTemperatureString)°/ \(weatherObject.lowTemperatureString)° Feels like \(weatherObject.feelsLikeTemperatureString)°"
+        self.windSpeed.text = "Wind Speed: \(weatherObject.speed) m/s"
+        self.pressureLabel.text = "Pressure: \(weatherObject.pressure) hPa"
+        self.humidLabel.text = "Humdity: \(weatherObject.humdity)%"
+        self.descriptionLabel.text = "\(weatherObject.description)"
     }
 }
 
@@ -110,7 +119,5 @@ extension WeatherViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
     }
-    
-
 }
 
