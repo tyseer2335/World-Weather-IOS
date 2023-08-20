@@ -97,7 +97,7 @@ extension WeatherViewController: WeatherManagerDelegate {
         self.cityLabel.text = weatherObject.cityName
         self.backgoundImage.image = weatherObject.imageName
         self.feelsLikeTemp.text = "\(weatherObject.highTemperatureString)°/ \(weatherObject.lowTemperatureString)° Feels like \(weatherObject.feelsLikeTemperatureString)°"
-        self.windSpeed.text = "Wind Speed: \(weatherObject.speed) m/s"
+        self.windSpeed.text = "Wind Speed: \(weatherObject.speed) km/h"
         self.pressureLabel.text = "Pressure: \(weatherObject.pressure) hPa"
         self.humidLabel.text = "Humdity: \(weatherObject.humdity)%"
         self.descriptionLabel.text = "\(weatherObject.description)"
