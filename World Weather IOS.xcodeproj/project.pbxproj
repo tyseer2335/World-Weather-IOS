@@ -322,7 +322,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NW98LK792K;
-				INFOPLIST_FILE = "/users/tyseer/desktop/programming projects/ios/world weather ios/world weather ios/info.plist";
+				INFOPLIST_FILE = "world weather ios/info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -340,7 +340,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NW98LK792K;
-				"INFOPLIST_FILE[sdk=*]" = "/users/tyseer/desktop/programming projects/ios/world weather ios/world weather ios/info.plist";
+				"INFOPLIST_FILE[sdk=*]" = "world weather ios/info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

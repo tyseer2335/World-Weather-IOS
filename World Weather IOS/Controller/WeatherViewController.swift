@@ -8,6 +8,8 @@ class WeatherViewController: UIViewController { //🟥
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var backgoundImage: UIImageView!
+    
     
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
@@ -23,6 +25,7 @@ class WeatherViewController: UIViewController { //🟥
         // Delegates
         weatherManager.delegate = self //🟥 Set the weatherManager as the delagate
         searchTextField.delegate = self // Set the text field as the delagate
+        
         
     }
     
@@ -82,11 +85,13 @@ extension WeatherViewController: WeatherManagerDelegate {
             self.temperatureLabel.text = weatherObject.temperatureString
             self.conditionImageView.image = UIImage(systemName: weatherObject.conditonName)
             self.cityLabel.text = weatherObject.cityName
+            self.backgoundImage.image = weatherObject.imageName
         }
     }
     
     func didFailWithError(error: Error) {
-        print(error)
+        
+        print("error")
     }
 }
 

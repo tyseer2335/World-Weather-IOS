@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 //MARK: - WeatherModel Struct
 struct WeatherModel {
@@ -28,9 +29,31 @@ struct WeatherModel {
                 case 800:
                     return "sun.max"
                 case 801...804:
-                    return "cloud.bolt"
+                    return "cloud"
                 default:
                     return "cloud"
+                }
+    }
+    
+    var imageName: UIImage {
+        // Computed property to handle the image backgrounds to display the image depending on the current weather
+        switch conditionId {
+                case 200...232:
+            return UIImage(named: "bolt.jpg")!
+                case 300...321:
+            return UIImage(named: "drizzle.jpg")!
+                case 500...531:
+            return UIImage(named: "rain.jpg")!
+                case 600...622:
+            return UIImage(named: "snow.jpg")!
+                case 701...781:
+            return UIImage(named: "fog.jpg")!
+                case 800:
+            return UIImage(named: "sun.jpg")!
+                case 801...804:
+            return UIImage(named: "cloud.jpg")!
+                default:
+            return UIImage(named: "cloud.jpg")!
                 }
     }
 

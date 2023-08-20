@@ -18,7 +18,7 @@ protocol WeatherManagerDelegate { // 🟥
 
 // Weather Manager Structure, handels all the weather data
 struct WeatherManager {
-    let apiKey = ""
+    let apiKey = "0c8ac95cf2f714827b195256a1996952"
     let weatherUrl = "https://api.openweathermap.org/data/2.5/weather?appid="
     
     var delegate: WeatherManagerDelegate? // 🟥
