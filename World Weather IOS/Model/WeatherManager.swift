@@ -97,7 +97,6 @@ struct WeatherManager {
             // Put the data into a weather object
             let weatherObject = WeatherModel(conditionId: id, cityName: name, temperature: temp,  high: high, low: low, feelsLike: feelsLike, pressure: pressure, humdity: humdity, description:description, speed:speed)
             
-            // Return the WeatherModel Object
             return weatherObject
             
         } catch {
